@@ -1,4 +1,6 @@
-module.exports = {
+import { Config } from "tailwindcss";
+
+const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -10,7 +12,8 @@ module.exports = {
         background: "#151c2c",
         foreground: "#ffffff",
         blueGray: {
-          50: "#F8FAFC",
+          // 50: "#F8FAFC",
+
           100: "#F1F5F9",
           200: "#E2E8F0",
           300: "#CBD5E1",
@@ -21,8 +24,14 @@ module.exports = {
           800: "#1E293B",
           900: "#0F172A",
         },
+        Bittersweet: {
+          50: "#FF572C", 
+          100:"#F9D388", // Corrected color definition with quotes
+        },
       },
     },
   },
   plugins: [],
 };
+
+export default config;
