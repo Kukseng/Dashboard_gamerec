@@ -1,6 +1,4 @@
-import { Config } from "tailwindcss";
-
-const config: Config = {
+const config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,11 +7,22 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        primary: {
+          50: "#eff6ff",
+          100: "#dbeafe",
+          200: "#bfdbfe",
+          300: "#93c5fd",
+          400: "#60a5fa",
+          500: "#3b82f6",
+          600: "#2563eb",
+          700: "#1d4ed8",
+          800: "#1e40af",
+          900: "#1e3a8a",
+          950: "#172554",
+        },
         background: "#151c2c",
         foreground: "#ffffff",
         blueGray: {
-          // 50: "#F8FAFC",
-
           100: "#F1F5F9",
           200: "#E2E8F0",
           300: "#CBD5E1",
@@ -25,8 +34,13 @@ const config: Config = {
           900: "#0F172A",
         },
         Bittersweet: {
-          50: "#FF572C", 
-          100:"#F9D388", // Corrected color definition with quotes
+          50: "#FF572C",
+          100: "#F9D388",
+        },
+        bluep: {
+          50: "#e0fbfc",
+          100: "#98c1d9",
+          200: "#3d5a80",
         },
       },
     },

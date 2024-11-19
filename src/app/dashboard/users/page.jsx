@@ -1,8 +1,11 @@
-import React from 'react'
+import React from "react";
+import Users from "../../xcomponent/dashboard/users/users";
 
-const UserPage = ()=> {
+const UserPage = () => {
   return (
-    <div>UserPage</div>
-  )
-}
+    <div>
+      <Users />
+    </div>
+  );
+};
 export default UserPage;
