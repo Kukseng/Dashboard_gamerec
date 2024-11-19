@@ -4,7 +4,7 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import { BiSolidMessageDetail } from "react-icons/bi";
 import { TfiSearch } from "react-icons/tfi";
 
-const Navbar = () => {
+const NavBar = () => {
   return (
     <div className="p-4 bg-blueGray-900 text-white rounded-md">
       <div className="flex justify-between items-center">
@@ -48,4 +48,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavBar;

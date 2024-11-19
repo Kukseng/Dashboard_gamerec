@@ -1,6 +1,6 @@
 import React from 'react';
 import { MdScreenSearchDesktop } from "react-icons/md";
-import Tableuser from '../tableuser/TableUser';
+import Tableuser from '../TableUser/TableUser';
 
 // Reusable StatCard Component
 const StatCard = ({ icon: Icon, title, stat, description, bgColor }) => {
@@ -14,7 +14,7 @@ const StatCard = ({ icon: Icon, title, stat, description, bgColor }) => {
         <h1 className="text-white text-2xl font-bold mt-2">{stat}</h1>
         <p className="text-white text-sm">{description}</p>
       </div>
-    </div>
+    </div> 
   );
 };
 

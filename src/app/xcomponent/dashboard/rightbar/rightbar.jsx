@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Rightbar = () => {
+const RightBar = () => {
   return (
     <div className="flex flex-col gap-5 sticky top-4 ml-2">
       {/* Right Block 1 */}
@@ -32,4 +32,4 @@ const Rightbar = () => {
   );
 };
 
-export default Rightbar;
+export default RightBar;

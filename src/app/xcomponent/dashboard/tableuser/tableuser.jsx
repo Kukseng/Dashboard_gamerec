@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Tableuser = () => {
+const TableUser = () => {
   return (
     <div className="relative flex flex-col w-full h-full overflow-auto text-gray-700 bg-yellow-500 shadow-md rounded-lg bg-clip-border">
       <div className="overflow-x-auto">
@@ -93,4 +93,4 @@ const Tableuser = () => {
   );
 };
 
-export default Tableuser;
+export default TableUser;

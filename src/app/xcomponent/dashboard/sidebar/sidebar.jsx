@@ -63,7 +63,7 @@ const menuItems = [
   },
 ];
 
-const Sidebar = () => {
+const SideBar = () => {
   return (
     <nav className="text-white    max-h-screen sticky top-[0px]">
       <div className="flex items-center gap-[25px] mb-[20px]">
@@ -105,4 +105,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default SideBar;
