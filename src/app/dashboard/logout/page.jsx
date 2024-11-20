@@ -1,6 +1,10 @@
 import React from "react";
+import Link from "next/link";
 
-const Logout = () => {
-  return <div>ffd</div>;
-};
-export default Logout;
+export default function LogoutPage() {
+  return (
+    <div>
+      <Link href="http://localhost:3000/">.</Link>
+    </div>
+  );
+}

@@ -31,18 +31,19 @@ const menuItems = [
         path: "/dashboard/games",
         icon: <PiGameControllerFill />,
       },
+      
     ],
   },
   {
     title: "Analytics",
     list: [
-      { title: "List Game", path: "/dashboard/revenue", icon: <MdWork /> },
+      { title: "List Game", path: "/dashboard/listgame", icon: <MdWork /> },
       {
         title: "Download",
-        path: "/dashboard/report",
+        path: "/dashboard/download",
         icon: <FaCartArrowDown />,
       },
-      { title: "Team", path: "/dashboard/team", icon: <MdPeople /> },
+  
     ],
   },
   {
@@ -59,6 +60,7 @@ const menuItems = [
         path: "/dashboard/helpcenter",
         icon: <MdHelpCenter />,
       },
+      { title: "Team", path: "/dashboard/team", icon: <MdPeople /> },
     ],
   },
 ];
@@ -67,9 +69,9 @@ const SideBar = () => {
   return (
     <nav className="text-white    max-h-screen sticky top-[0px]">
       <div className="flex items-center gap-[25px] mb-[20px]">
-        <Image
+        <img
           className="rounded-full object-cover w-[50px] h-[50px]"
-          src={Noavatar}
+          src= "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGZhY2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
           alt="User Avatar"
         />
         <div className="flex flex-col">
