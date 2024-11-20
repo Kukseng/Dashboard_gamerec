@@ -69,7 +69,7 @@ const SideBar = () => {
   return (
     <nav className="text-white    max-h-screen sticky top-[0px]">
       <div className="flex items-center gap-[25px] mb-[20px]">
-        <img
+        <Image
           className="rounded-full object-cover w-[50px] h-[50px]"
           src= "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGZhY2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
           alt="User Avatar"
