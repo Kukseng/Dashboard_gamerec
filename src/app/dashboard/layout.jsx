@@ -1,6 +1,6 @@
 import React from "react";
-import Sidebar from "../xcomponent/dashboard/SideBar/SideBar";
-import Navbar from "../xcomponent/dashboard/navbar/NavBar";
+import Sidebar from "@/app/xcomponent/dashboard/sidebar/SideBar";
+import Navbar from "@/app/xcomponent/dashboard/navbar/NavBar";
 
 const Layout = ({ children }) => {
   return (

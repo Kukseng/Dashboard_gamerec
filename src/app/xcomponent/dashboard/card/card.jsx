@@ -1,6 +1,6 @@
 import React from 'react';
 import { MdScreenSearchDesktop } from "react-icons/md";
-import Tableuser from '../TableUser/TableUser';
+import Tableuser from '../tableuser/TableUser';
 
 // Reusable StatCard Component
 const StatCard = ({ icon: Icon, title, stat, description, bgColor }) => {
