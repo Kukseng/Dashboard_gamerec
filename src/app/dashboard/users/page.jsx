@@ -10,7 +10,7 @@
 // };
 // export default UserPage;
 import React from "react";
-import Users from "../../xcomponent/dashboard/Users/users";
+import Users from "../../xcomponent/dashboard/users/users";
 export default function UserPageage() {
   return (
     <div>
