@@ -73,7 +73,7 @@ const ListgamePage = () => {
             <h3 className="text-lg font-semibold">Game Title 3</h3>
             <div className="flex justify-between items-center mt-2">
               <span className="text-gray-500">Time Release: 1h 20m 30s</span>
-              <span className="text-indigo-600">Price: $25.00</span>
+              <span className="text-indigo-600">Download: 1000</span>
             </div>
             <div className="mt-4 flex justify-between items-center">
               <div className="flex space-x-2">
@@ -100,7 +100,7 @@ const ListgamePage = () => {
             <h3 className="text-lg font-semibold">Game Title 4</h3>
             <div className="flex justify-between items-center mt-2">
               <span className="text-gray-500">Time Release: 0h 45m 10s</span>
-              <span className="text-indigo-600">Price: $39.99</span>
+              <span className="text-indigo-600">Download: 1000</span>
             </div>
             <div className="mt-4 flex justify-between items-center">
               <div className="flex space-x-2">
