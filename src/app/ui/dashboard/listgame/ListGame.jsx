@@ -104,33 +104,40 @@ const ListgamePage = () => {
   return (
     <div className="bg-gray-100 p-8">
       <h2 className="text-2xl font-bold text-blue-600 mb-6">Game Publish</h2>
-      <div className="grid grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {Listitems.map((item, index) => (
           <div
             key={index}
-            className="bg-white rounded-lg shadow-md overflow-hidden"
+            className="bg-white rounded-lg shadow-md flex flex-col h-full"
           >
+            {/* Card Image */}
             <Image
               src={item.image}
-              alt="Game Title 1"
+              alt={item.title}
               width={400}
               height={250}
               className="w-full h-48 object-cover"
             />
-            <div className="p-4">
+
+            {/* Card Content */}
+            <div className="p-4 flex flex-col flex-1">
               <h3 className="text-lg font-semibold">{item.title}</h3>
-              <p className="text-sm font-thin">{item.describe}</p>
+              <p className="text-sm font-thin flex-1">{item.describe}</p>
+
+              {/* Time and Download */}
               <div className="flex justify-between items-center mt-2">
                 <span className="text-gray-500">{item.time}</span>
-                <span className="text-indigo-600">{item.downlaod}</span>
+                <span className="text-indigo-600">{item.download}</span>
               </div>
-              <div className="mt-4 flex justify-between items-center">
+
+              {/* Emoji and Button */}
+              <div className="flex justify-between items-center mt-auto">
                 <div className="flex space-x-2">
                   <span className="text-yellow-500">{item.emoji1}</span>
                   <span className="text-blue-600">{item.emoji2}</span>
                 </div>
                 <button className="bg-indigo-600 text-white py-2 px-4 rounded-md">
-                  Detail Game
+                  {item.button}
                 </button>
               </div>
             </div>

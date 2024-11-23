@@ -46,6 +46,50 @@ const GameCom = () => {
       releaseDate: "2011-11-18",
       lastUpdate: "2024-08-20",
     },
+    {
+      name: "FIFA 23",
+      image:
+        "https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-mobile/season-5/global_assets/images/2023/03/fifa-mobile-grid-tile-season-5-16x9-1.jpg.adapt.crop191x100.1200w.jpg",
+      category: "Sports",
+      downloads: 15000,
+      rating: 4.8,
+      size: "50GB",
+      releaseDate: "2023-09-30",
+      lastUpdate: "2024-11-10",
+    },
+    {
+      name: "League of Legends",
+      image:
+        "https://cdn.prod.website-files.com/5f6e2764d26f3c5244a5b664/64b53061f419e782ea982384_LOL.jpg",
+      category: "MOBA",
+      downloads: 250000,
+      rating: 4.5,
+      size: "20GB",
+      releaseDate: "2009-10-27",
+      lastUpdate: "2024-10-01",
+    },
+    {
+      name: "Valorant",
+      image:
+        "https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/d0db663bf28844dcbd744935cdd8c71083e0031c-5600x3150.jpg",
+      category: "FPS",
+      downloads: 180000,
+      rating: 4.7,
+      size: "25GB",
+      releaseDate: "2020-06-02",
+      lastUpdate: "2024-09-15",
+    },
+    {
+      name: "Minecraft",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-kVChoz3ZT5ukQfDO5qWE-c4xPeqedBGJOg&s",
+      category: "Sandbox",
+      downloads: 500000,
+      rating: 4.9,
+      size: "1GB",
+      releaseDate: "2011-11-18",
+      lastUpdate: "2024-08-20",
+    },
     // Add more games as needed
   ];
 

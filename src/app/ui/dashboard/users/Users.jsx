@@ -87,6 +87,66 @@ const Users = () => {
       email: "sarah.connor@example.com",
       avatar: Noavatar,
     },
+    {
+      name: "Jane Cooper",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqQDPqv-BAo78EuMqkFR-gpycaPahFa3StRw&s",
+      title: "Regional Paradigm Technician",
+      status: "Active",
+      role: "Admin",
+      email: "jane.cooper@example.com",
+      avatar: Noavatar,
+    },
+    {
+      name: "John Doe",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-8GNZcrIagtQZv9wqUAvpdtOJv7uZ44cTxQ&s",
+      title: "Software Engineer",
+      status: "Inactive",
+      role: "Developer",
+      email: "john.doe@example.com",
+      avatar: Noavatar,
+    },
+    {
+      name: "Sarah Connor",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeUaM3g4E5ROwDoLnCnycqSx8UexOF8Z9h1A&s",
+      title: "Project Manager",
+      status: "Active",
+      role: "Manager",
+      email: "sarah.connor@example.com",
+      avatar: Noavatar,
+    },
+    {
+      name: "Jane Cooper",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqQDPqv-BAo78EuMqkFR-gpycaPahFa3StRw&s",
+      title: "Regional Paradigm Technician",
+      status: "Active",
+      role: "Admin",
+      email: "jane.cooper@example.com",
+      avatar: Noavatar,
+    },
+    {
+      name: "John Doe",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-8GNZcrIagtQZv9wqUAvpdtOJv7uZ44cTxQ&s",
+      title: "Software Engineer",
+      status: "Inactive",
+      role: "Developer",
+      email: "john.doe@example.com",
+      avatar: Noavatar,
+    },
+    {
+      name: "Sarah Connor",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeUaM3g4E5ROwDoLnCnycqSx8UexOF8Z9h1A&s",
+      title: "Project Manager",
+      status: "Active",
+      role: "Manager",
+      email: "sarah.connor@example.com",
+      avatar: Noavatar,
+    },
   ];
 
   return (
