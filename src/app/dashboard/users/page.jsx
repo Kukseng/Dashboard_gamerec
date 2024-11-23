@@ -1,5 +1,5 @@
 // import React from "react";
-// import Users from "../../xcomponent/dashboard/Users/users";
+// import Users from "../../ui/dashboard/Users/users";
 
 // const UserPage = () => {
 //   return (
@@ -10,7 +10,7 @@
 // };
 // export default UserPage;
 import React from "react";
-import Users from "@/app/xcomponent/dashboard/users/Users";
+import Users from "@/app/ui/dashboard/users/Users";
 export default function UserPageage() {
   return (
     <div>

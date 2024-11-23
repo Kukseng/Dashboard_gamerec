@@ -1,5 +1,5 @@
 import React from 'react'
-import ListgamePage from '../../xcomponent/dashboard/listgame/ListGame'
+import ListgamePage from '../../ui/dashboard/listgame/ListGame'
 
 export default function ListGame() {
   return (

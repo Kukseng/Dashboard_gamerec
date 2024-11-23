@@ -1,20 +1,24 @@
 import React from "react";
 import { MdScreenSearchDesktop } from "react-icons/md";
 import Tableuser from "../tableuser/TableUser";
-
+import { BsThreeDots } from "react-icons/bs";
 // Reusable StatCard Component
 const StatCard = ({ icon: Icon, title, stat, description, bgColor }) => {
   return (
-    <div className={`${bgColor} p-4 rounded-xl shadow-2xl`}>
-      <div className="flex items-center justify-center mx-5 ">
-        <Icon className="mr-2 text-white text-lg" />
-        <h1 className="text-white text-sm font-semibold text-center">
-          {title}
-        </h1>
+    <div className={`${bgColor} p-4 rounded-xl shadow-2xl text-black`}>
+      {/*time relese  */}
+      <div className="flex justify-between ">
+        <p className="text-sm">12:30 - 23/11</p>
+        {/* Icon */}
+        <BsThreeDots />
       </div>
-      <div className="text-center">
-        <h1 className="text-white text-2xl font-bold mt-2">{stat}</h1>
-        <p className="text-white text-sm">{description}</p>
+      <div className="flex  my-5 ">
+        <Icon className="mr-2  text-xl" />
+        <h1 className=" text-sm font-semibold text-center">{title}</h1>
+      </div>
+      <div className="flex justify-between items-center">
+        <h1 className=" text-xl font-bold  ">{stat}</h1>
+        <p className=" text-md">{description}</p>
       </div>
     </div>
   );
@@ -30,13 +34,15 @@ const Card = () => {
           title="Total Enroll"
           stat="10,093"
           description="User Enroll"
-          bgColor="bg-Carolina"
+          bgHover=""
+          bgColor="bg-cyan-200"
         />
         <StatCard
           icon={MdScreenSearchDesktop}
           title="Total Login"
           stat="8,543"
           description="Active Logins"
+          bgHover=""
           bgColor="bg-Tuscany"
         />
         <StatCard
@@ -44,6 +50,7 @@ const Card = () => {
           title="Total Download"
           stat="12,304"
           description="Game Downloads"
+          bgHover=""
           bgColor="bg-Sage"
         />
       </div>
@@ -53,7 +60,7 @@ const Card = () => {
         <div className="p-4 rounded-lg h-[390px]">
           <Tableuser /> {/* Insert the Tableuser component here */}
         </div>
-        <div className=" bg-blue-200 p-4 rounded-lg h-[390px]">
+        <div className=" bg-gray-100 p-4 rounded-lg h-[390px]">
           <h1 className="text-white text-xl font-semibold">Color 5</h1>
         </div>
       </div>

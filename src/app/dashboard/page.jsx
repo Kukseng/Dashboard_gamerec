@@ -1,6 +1,6 @@
 import React from "react";
-import Card from "@/app/xcomponent/dashboard/card/Card";
-import Rightbar from "@/app/xcomponent/dashboard/rightbar/RightBar";
+import Card from "@/app/ui/dashboard/card/Card";
+import Rightbar from "@/app/ui/dashboard/rightbar/RightBar";
 
 const Dashboard = () => {
   return (

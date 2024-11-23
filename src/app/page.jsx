@@ -1,5 +1,5 @@
 import Dashboard from "./dashboard/page";
-import LoginPage from "./xcomponent/login/Login";
+import LoginPage from "./ui/login/Login";
 
 export default function Home() {
   return (
