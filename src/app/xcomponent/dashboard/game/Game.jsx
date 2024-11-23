@@ -1,8 +1,11 @@
 // components/ProductTable.js
+import Image from "next/image";
 const GameCom = () => {
   const games = [
     {
       name: "FIFA 23",
+      image:
+        "https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-mobile/season-5/global_assets/images/2023/03/fifa-mobile-grid-tile-season-5-16x9-1.jpg.adapt.crop191x100.1200w.jpg",
       category: "Sports",
       downloads: 15000,
       rating: 4.8,
@@ -12,6 +15,8 @@ const GameCom = () => {
     },
     {
       name: "League of Legends",
+      image:
+        "https://cdn.prod.website-files.com/5f6e2764d26f3c5244a5b664/64b53061f419e782ea982384_LOL.jpg",
       category: "MOBA",
       downloads: 250000,
       rating: 4.5,
@@ -21,6 +26,8 @@ const GameCom = () => {
     },
     {
       name: "Valorant",
+      image:
+        "https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/d0db663bf28844dcbd744935cdd8c71083e0031c-5600x3150.jpg",
       category: "FPS",
       downloads: 180000,
       rating: 4.7,
@@ -30,6 +37,8 @@ const GameCom = () => {
     },
     {
       name: "Minecraft",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-kVChoz3ZT5ukQfDO5qWE-c4xPeqedBGJOg&s",
       category: "Sandbox",
       downloads: 500000,
       rating: 4.9,
@@ -71,6 +80,15 @@ const GameCom = () => {
           <tbody>
             {games.map((game, index) => (
               <tr key={index} className="border-b">
+                <td>
+                  <Image
+                    className="rounded-full object-cover w-[50px] h-[50px]"
+                    src={game.image}
+                    alt="User Avatar"
+                    width={1000}
+                    height={1000}
+                  />
+                </td>
                 <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                   {game.name}
                 </td>

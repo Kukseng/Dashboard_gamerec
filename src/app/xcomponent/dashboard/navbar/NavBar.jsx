@@ -6,8 +6,8 @@ import { TfiSearch } from "react-icons/tfi";
 
 const NavBar = () => {
   return (
-    <div className="p-4 bg-blueGray-900 text-white rounded-md">
-      <div className="flex justify-between items-center">
+    <div className="p-4 bg-gray-100 text-black rounded-md shadow-2xl mb-2 ">
+      <div className="flex justify-between items-center ">
         {/* Brand Name */}
         <div className="flex flex-col text-center">
           <h1 className="text-xl font-semibold">SABAY</h1>

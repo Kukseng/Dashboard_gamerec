@@ -20,6 +20,10 @@ const config = {
           900: "#1e3a8a",
           950: "#172554",
         },
+        Carolina: "#589FD2",
+        Tuscany: "#FCD12C",
+        Sage: "#9DC183",
+        whitee: "#fff",
         background: "#151c2c",
         foreground: "#ffffff",
         blueGray: {

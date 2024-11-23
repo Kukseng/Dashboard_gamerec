@@ -22,7 +22,7 @@ const menuItems = [
     list: [
       { title: "Dashboard", path: "/dashboard", icon: <MdDashboard /> },
       {
-        title: "Users",
+        title: "Users Management",
         path: "/dashboard/users",
         icon: <MdSupervisedUserCircle />,
       },
@@ -65,8 +65,8 @@ const menuItems = [
 
 const SideBar = () => {
   return (
-    <nav className="text-white    max-h-screen sticky top-[0px]">
-      <div className="flex items-center gap-[25px] mb-[20px]">
+    <nav className="text-black border-b border-slate-500 w-full max-h-screen sticky top-[0px]">
+      <div className="flex items-center gap-[25px]​  mb-[20px] ">
         <Image
           className="rounded-full object-cover w-[50px] h-[50px]"
           src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGZhY2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
@@ -75,13 +75,13 @@ const SideBar = () => {
           height={50} // Specify the height
         />
 
-        <div className="flex flex-col">
+        <div className="flex flex-col ml-2">
           <span className="font-bold">Kuri kie</span>
           <span className="text-sm text-gray-400">Administrator</span>
         </div>
       </div>
 
-      <ul>
+      <ul className="">
         {menuItems.map((category) => (
           <div key={category.title}>
             <h3 className="text-xl font-semibold mb-2">{category.title}</h3>
@@ -89,7 +89,7 @@ const SideBar = () => {
               {category.list.map((item) => (
                 <li
                   key={item.path}
-                  className="flex items-center space-x-3 py-2 mt-4 cursor-pointer hover:bg-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="flex items-center space-x-3 py-2 mt-4 cursor-pointer hover:bg-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <Link
                     href={item.path}

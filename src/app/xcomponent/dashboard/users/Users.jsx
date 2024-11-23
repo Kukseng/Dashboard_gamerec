@@ -3,17 +3,17 @@ import Image from "next/image";
 import Noavatar from "../../../../../public/noavatar.png";
 
 // Reusable UserRow Component
-const UserRow = ({ name, title, status, role, email, avatar }) => (
+const UserRow = ({ name, image, title, status, role, email, avatar }) => (
   <tr>
     <td className="px-6 py-4 whitespace-nowrap">
       <div className="flex items-center">
         <div className="flex-shrink-0 h-10 w-10">
           <Image
             className="h-10 w-10 rounded-full"
-            src={avatar || Noavatar} // Use fallback if no avatar provided
+            src={image} // Use fallback if no avatar provided
             alt={name}
-            width={40}
-            height={40} // Required for Next.js Image optimization
+            width={1000}
+            height={1000} // Required for Next.js Image optimization
           />
         </div>
         <div className="ml-4">
@@ -59,6 +59,8 @@ const Users = () => {
   const users = [
     {
       name: "Jane Cooper",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqQDPqv-BAo78EuMqkFR-gpycaPahFa3StRw&s",
       title: "Regional Paradigm Technician",
       status: "Active",
       role: "Admin",
@@ -67,6 +69,8 @@ const Users = () => {
     },
     {
       name: "John Doe",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-8GNZcrIagtQZv9wqUAvpdtOJv7uZ44cTxQ&s",
       title: "Software Engineer",
       status: "Inactive",
       role: "Developer",
@@ -75,6 +79,8 @@ const Users = () => {
     },
     {
       name: "Sarah Connor",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeUaM3g4E5ROwDoLnCnycqSx8UexOF8Z9h1A&s",
       title: "Project Manager",
       status: "Active",
       role: "Manager",

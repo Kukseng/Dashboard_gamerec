@@ -47,8 +47,8 @@ export default function SettingsPage() {
                     className="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-indigo-300 dark:ring-indigo-500"
                     src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGZhY2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
                     alt="Bordered avatar"
-                    width={160} // Set the width of the image
-                    height={160} // Set the height of the image
+                    width={1000}
+                    height={1000}
                   />
 
                   <div className="flex flex-col space-y-5 sm:ml-8">
@@ -81,7 +81,6 @@ export default function SettingsPage() {
                         id="first_name"
                         className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
                         placeholder="Your first name"
-                        value="Kuri"
                         required
                       />
                     </div>
@@ -98,7 +97,6 @@ export default function SettingsPage() {
                         id="last_name"
                         className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
                         placeholder="Your last name"
-                        value="kis"
                         required
                       />
                     </div>
