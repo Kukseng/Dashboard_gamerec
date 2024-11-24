@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Noavatar from "../../../../../public/noavatar.png";
+import { MdCategory } from "react-icons/md";
 import {
   MdDashboard,
   MdSupervisedUserCircle,
@@ -30,6 +31,11 @@ const menuItems = [
         title: "Games",
         path: "/dashboard/games",
         icon: <PiGameControllerFill />,
+      },
+      {
+        title: "Game Categories",
+        path: "/dashboard/categories",
+        icon: <MdCategory />,
       },
     ],
   },
