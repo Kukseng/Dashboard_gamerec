@@ -1,4 +1,4 @@
-// webUsageStats.js
+"use client";
 
 export const desktopOS = [
   { name: "Windows", value: 60 },

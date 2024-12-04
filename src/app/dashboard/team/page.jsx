@@ -3,30 +3,33 @@ import Image from "next/image";
 import Link from "next/link";
 
 const TeamMember = ({ name, role, description, imageSrc, altText, links }) => (
-  <div className="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
-    <Link href="#">
+  <div className="flex flex-col sm:flex-row items-center bg-gray-50 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden">
+    <div className="w-full sm:w-48 h-48 relative">
       <Image
-        className="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
+        className="object-cover w-full h-full"
         src={imageSrc}
         alt={altText}
-        width={200}
-        height={200}
+        fill
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
       />
-    </Link>
-    <div className="p-5">
+    </div>
+    <div className="p-5 flex-1">
       <h3 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-        <Link href="#">{name}</Link>
+        {name}
       </h3>
-      <span className="text-gray-500 dark:text-gray-400">{role}</span>
-      <p className="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">
+      <span className="text-gray-500 dark:text-gray-400 block mb-2">
+        {role}
+      </span>
+      <p className="mb-4 font-light text-gray-500 dark:text-gray-400">
         {description}
       </p>
-      <ul className="flex space-x-4 sm:mt-0">
+      <ul className="flex space-x-4">
         {links.map((link, index) => (
           <li key={index}>
             <Link
               href={link.href}
               className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+              aria-label={`${name}'s ${link.platform} profile`}
             >
               {link.icon}
             </Link>
@@ -42,14 +45,14 @@ export default function Teampage() {
     {
       name: "Ny Fong",
       role: "CEO & Web Developer",
-      description:
-        "Bonnie drives the technical strategy of the platform and brand.",
+      description: "Drives the technical strategy of the platform and brand.",
       imageSrc:
         "https://wtc-s1.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffong.b0dffe6a.png&w=1080&q=75",
       altText: "Ny Fong",
       links: [
         {
           href: "#",
+          platform: "Facebook",
           icon: (
             <svg
               className="w-5 h-5"
@@ -65,20 +68,20 @@ export default function Teampage() {
             </svg>
           ),
         },
-        // Add more links for Ny Fong here...
       ],
     },
     {
       name: "Phou Kukseng",
       role: "CTO",
       description:
-        "Jese drives the tech solutions behind the platform, focusing on development and scalability.",
+        "Drives the tech solutions behind the platform, focusing on development and scalability.",
       imageSrc:
         "https://wtc-s1.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fkaiseng.3f065b55.png&w=640&q=75",
       altText: "Phou Kukseng",
       links: [
         {
           href: "#",
+          platform: "GitHub",
           icon: (
             <svg
               className="w-5 h-5"
@@ -94,20 +97,20 @@ export default function Teampage() {
             </svg>
           ),
         },
-        // Add more links for Phou Kukseng here...
       ],
     },
     {
       name: "Penh Sokpheavy",
       role: "CTO",
       description:
-        "Jese drives the tech solutions behind the platform, focusing on development and scalability.",
+        "Drives the tech solutions behind the platform, focusing on development and scalability.",
       imageSrc:
         "https://wtc-s1.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fyu.4dcc1cf0.png&w=1080&q=75",
-      altText: "Phou Kukseng",
+      altText: "Penh Sokpheavy",
       links: [
         {
           href: "#",
+          platform: "GitHub",
           icon: (
             <svg
               className="w-5 h-5"
@@ -123,20 +126,20 @@ export default function Teampage() {
             </svg>
           ),
         },
-        // Add more links for Phou Kukseng here...
       ],
     },
     {
       name: "Morn Karakot",
       role: "CTO",
       description:
-        "Jese drives the tech solutions behind the platform, focusing on development and scalability.",
+        "Drives the tech solutions behind the platform, focusing on development and scalability.",
       imageSrc:
         "https://wtc-s1.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fkot.8c894899.png&w=828&q=75",
-      altText: "Phou Kukseng",
+      altText: "Morn Karakot",
       links: [
         {
           href: "#",
+          platform: "GitHub",
           icon: (
             <svg
               className="w-5 h-5"
@@ -152,10 +155,8 @@ export default function Teampage() {
             </svg>
           ),
         },
-        // Add more links for Phou Kukseng here...
       ],
     },
-    // Add more team members as needed
   ];
 
   return (
@@ -166,7 +167,7 @@ export default function Teampage() {
             Our Team
           </h2>
           <p className="font-light text-gray-500 lg:mb-16 sm:text-xl dark:text-gray-400">
-            Team members Website Free Game resource
+            Team members of Website Free Game resource
           </p>
         </div>
         <div className="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2">
