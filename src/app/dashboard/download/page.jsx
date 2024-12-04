@@ -8,7 +8,7 @@ const popularGames = [
     name: "FIFA 23",
     downloads: 1500,
     image:
-      "https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-mobile/season-5/global_assets/images/2023/03/fifa-mobile-grid-tile-season-5-16x9-1.jpg.adapt.crop191x100.1200w.jpg",
+      "https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-mobile/season-5/global_assets/images/2023/03/fifa-mobile-grid-tile-season-5-16x9-1.jpg.adapt.crop16x9.1023w.jpg",
 
     developer: "EA Sports",
     rating: 4.5,
@@ -48,6 +48,8 @@ const GameCard = ({ game }) => {
       <div className="relative">
         <Image
           src={game.image}
+          width={1000}
+          height={1000}
           alt={game.name}
           className="w-full h-48 object-cover"
         />
