@@ -8,7 +8,7 @@ import Tableuser from "../tableuser/TableUser";
 const StatCard = ({ icon: Icon, title, stat, description, bgColor }) => {
   return (
     <div
-      className={`${bgColor} p-6 rounded-xl shadow-2xl text-black flex flex-col justify-between`}
+      className={`${bgColor} p-6 rounded-xl shadow-2xl text-black flex flex-col overflow-hidden transform transition-all hover:scale-105 justify-between`}
     >
       <div className="flex my-3">
         <Icon className="mr-2 text-xl" />

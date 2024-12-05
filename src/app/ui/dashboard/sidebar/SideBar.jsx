@@ -58,7 +58,7 @@ const menuItems = [
         path: "/dashboard/settings",
         icon: <MdOutlineSettings />,
       },
-      { title: "Logout", path: "/dashboard/logout", icon: <MdLogout /> },
+      { title: "Logout", path: "/", icon: <MdLogout /> },
       {
         title: "HelpCenter",
         path: "/dashboard/helpcenter",
