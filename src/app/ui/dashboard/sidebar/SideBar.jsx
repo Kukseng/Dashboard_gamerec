@@ -32,11 +32,6 @@ const menuItems = [
         path: "/dashboard/games",
         icon: <PiGameControllerFill />,
       },
-      {
-        title: "Game Categories",
-        path: "/dashboard/categories",
-        icon: <MdCategory />,
-      },
     ],
   },
   {
@@ -77,8 +72,8 @@ const SideBar = () => {
           className="rounded-full object-cover w-[50px] h-[50px]"
           src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGZhY2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
           alt="User Avatar"
-          width={50} // Specify the width
-          height={50} // Specify the height
+          width={50}
+          height={50}
         />
 
         <div className="flex flex-col ml-2">

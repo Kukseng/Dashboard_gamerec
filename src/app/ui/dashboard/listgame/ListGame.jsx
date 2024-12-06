@@ -139,6 +139,15 @@ const ListgamePage = () => {
                 <button className="bg-indigo-600 text-white py-2 px-4 rounded-md">
                   {item.button}
                 </button>
+                {/*  <Link
+                  href={`../gamedetail/GameDetail.jsx${item.title
+                    .toLowerCase()
+                    .replace(/\s+/g, "-")}`}
+                >
+                  <button className="bg-indigo-600 text-white py-2 px-4 rounded-md">
+                    {item.button}
+                  </button>
+                </Link> */}
               </div>
             </div>
           </div>
