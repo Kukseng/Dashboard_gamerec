@@ -4,14 +4,14 @@ import * as React from "react";
 import { PieChart } from "@mui/x-charts/PieChart";
 
 // Corrected data to align with expected structure (if required)
-export const desktopOS = [
-  { label: "Windows", value: 60 },
-  { label: "macOS", value: 25 },
-  { label: "Linux", value: 10 },
-  { label: "Other", value: 5 },
+export const gamePie = [
+  { label: "Minecraft", value: 60 },
+  { label: "Valorant", value: 25 },
+  { label: "The Final", value: 10 },
+  { label: "Mummy Gold2", value: 5 },
 ];
 
-data: desktopOS.map(({ name, value }) => ({ label: name, value }));
+data: gamePie.map(({ name, value }) => ({ label: name, value }));
 
 const RightBar = () => {
   return (
@@ -24,7 +24,7 @@ const RightBar = () => {
           <PieChart
             series={[
               {
-                data: desktopOS.map(({ label, value }) => ({ label, value })), // Use correct keys
+                data: gamePie.map(({ label, value }) => ({ label, value })), // Use correct keys
                 highlightScope: { fade: "global", highlight: "item" },
                 faded: {
                   innerRadius: 30,

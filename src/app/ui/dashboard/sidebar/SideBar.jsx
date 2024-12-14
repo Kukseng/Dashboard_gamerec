@@ -82,12 +82,10 @@ const SideBar = () => {
   }, [isDarkMode]);
 
   return (
-    // 
-      //onClick={() => setIsDarkMode(!isDarkMode)} ${isDarkMode ? "bg-gray-800 text-white" : "bg-white text-black"
-    
-    <section
-       className={`p-10`}
-    >
+    //
+    //onClick={() => setIsDarkMode(!isDarkMode)} ${isDarkMode ? "bg-gray-800 text-white" : "bg-white text-black"
+
+    <section className={`p-10`}>
       <nav
         className={`text-black border-b border-slate-500 w-full max-h-screen sticky top-[0px] `}
       >
@@ -105,8 +103,6 @@ const SideBar = () => {
             <span className="text-sm text-gray-400">Administrator</span>
           </div>
         </div>
-
-       
 
         <ul>
           {menuItems.map((category) => (
