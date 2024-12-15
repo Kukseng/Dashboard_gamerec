@@ -4,7 +4,8 @@ import React, { useState, useEffect } from "react";
 import { Trash2, Edit, PlusCircle } from "lucide-react";
 import Image from "next/image";
 
-const PLACEHOLDER_IMAGE = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg==";
+const PLACEHOLDER_IMAGE =
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg==";
 
 const GameCRUDDashboard = () => {
   const [games, setGames] = useState([]);
@@ -38,9 +39,9 @@ const GameCRUDDashboard = () => {
       const response = await fetch(`/api/games/${id}`, {
         method: "DELETE",
       });
-      
+
       if (!response.ok) throw new Error("Failed to delete game");
-      
+
       await fetchGames(); // Refresh the list
     } catch (err) {
       setError(err.message);
@@ -70,30 +71,37 @@ const GameCRUDDashboard = () => {
   };
 
   const handleSave = async () => {
+    if (!selectedGame.name || !selectedGame.category || !selectedGame.developer) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+
     try {
       const formData = new FormData();
-      
+
       // Append all game data
-      Object.keys(selectedGame).forEach(key => {
-        if (key !== 'image' || !imageFile) { // Don't append image if we have a file
+      Object.keys(selectedGame).forEach((key) => {
+        if (key !== "image" || !imageFile) {
+          // Don't append image if we have a file
           formData.append(key, selectedGame[key]);
         }
       });
-      
+
       // Append image file if exists
       if (imageFile) {
-        formData.append('image', imageFile);
+        formData.append("image", imageFile);
       }
 
-      const url = isAddMode ? '/api/games' : `/api/games/${selectedGame._id}`;
-      const method = isAddMode ? 'POST' : 'PUT';
+      const url = isAddMode ? "/api/games" : `/api/games/${selectedGame._id}`;
+      const method = isAddMode ? "POST" : "PUT";
 
       const response = await fetch(url, {
         method: method,
         body: formData,
       });
 
-      if (!response.ok) throw new Error(`Failed to ${isAddMode ? 'add' : 'update'} game`);
+      if (!response.ok)
+        throw new Error(`Failed to ${isAddMode ? "add" : "update"} game`);
 
       await fetchGames(); // Refresh the list
       setIsModalOpen(false);
@@ -106,10 +114,18 @@ const GameCRUDDashboard = () => {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
+      if (!file.type.startsWith("image/")) {
+        alert("Please select a valid image file.");
+        return;
+      }
+      if (file.size > 5 * 1024 * 1024) { // Limit file size to 5MB
+        alert("File size exceeds 5MB limit.");
+        return;
+      }
       setImageFile(file);
       // Create preview URL
       const previewUrl = URL.createObjectURL(file);
-      setSelectedGame(prev => ({ ...prev, image: previewUrl }));
+      setSelectedGame((prev) => ({ ...prev, image: previewUrl }));
     }
   };
 
@@ -131,7 +147,11 @@ const GameCRUDDashboard = () => {
                 <div className="w-20 h-20 relative">
                   <Image
                     src={selectedGame.image || PLACEHOLDER_IMAGE}
-                    alt="Game Preview"
+                    alt={
+                      selectedGame.image
+                        ? `Preview of the game ${selectedGame.name}`
+                        : "Placeholder image for missing game preview"
+                    }
                     className="rounded-lg object-cover"
                     fill
                   />
@@ -148,35 +168,45 @@ const GameCRUDDashboard = () => {
               type="text"
               placeholder="Game Name"
               value={selectedGame.name}
-              onChange={(e) => setSelectedGame({ ...selectedGame, name: e.target.value })}
+              onChange={(e) =>
+                setSelectedGame({ ...selectedGame, name: e.target.value })
+              }
               className="w-full p-2 border rounded"
             />
             <input
               type="text"
               placeholder="Category"
               value={selectedGame.category}
-              onChange={(e) => setSelectedGame({ ...selectedGame, category: e.target.value })}
+              onChange={(e) =>
+                setSelectedGame({ ...selectedGame, category: e.target.value })
+              }
               className="w-full p-2 border rounded"
             />
             <input
               type="text"
               placeholder="Developer"
               value={selectedGame.developer}
-              onChange={(e) => setSelectedGame({ ...selectedGame, developer: e.target.value })}
+              onChange={(e) =>
+                setSelectedGame({ ...selectedGame, developer: e.target.value })
+              }
               className="w-full p-2 border rounded"
             />
             <input
               type="text"
               placeholder="Rating"
               value={selectedGame.rating}
-              onChange={(e) => setSelectedGame({ ...selectedGame, rating: e.target.value })}
+              onChange={(e) =>
+                setSelectedGame({ ...selectedGame, rating: e.target.value })
+              }
               className="w-full p-2 border rounded"
             />
             <input
               type="text"
               placeholder="Size"
               value={selectedGame.size}
-              onChange={(e) => setSelectedGame({ ...selectedGame, size: e.target.value })}
+              onChange={(e) =>
+                setSelectedGame({ ...selectedGame, size: e.target.value })
+              }
               className="w-full p-2 border rounded"
             />
             <div className="flex space-x-4">
@@ -205,6 +235,10 @@ const GameCRUDDashboard = () => {
 
   if (error) {
     return <div className="text-red-500 text-center py-4">{error}</div>;
+  }
+
+  if (games.length === 0) {
+    return <div className="text-center py-4">No games available.</div>;
   }
 
   return (
@@ -237,7 +271,7 @@ const GameCRUDDashboard = () => {
                 <td className="p-3 flex items-center">
                   <Image
                     src={game.image || PLACEHOLDER_IMAGE}
-                    alt={game.name}
+                    alt={game.name || "Game Preview"}
                     width={100}
                     height={100}
                     className="rounded-lg object-cover w-[100px] h-[100px] mr-10"

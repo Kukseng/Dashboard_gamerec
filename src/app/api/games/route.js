@@ -1,4 +1,3 @@
-// src/app/api/games/route.js
 import { MongoClient, ObjectId } from "mongodb";
 
 const uri = process.env.MONGODB_URI;
@@ -17,7 +16,7 @@ export async function GET() {
   try {
     const client = new MongoClient(uri);
     await client.connect();
-    const database = client.db("GameStore"); // Use your actual DB name
+    const database = client.db("Auth"); 
     const games = await database.collection("games").find({}).toArray();
     await client.close();
 
@@ -48,7 +47,7 @@ export async function POST(request) {
     const gameData = await request.json();
     const client = new MongoClient(uri);
     await client.connect();
-    const database = client.db("GameStore"); // Use your actual DB name
+    const database = client.db("gamestore");
 
     let result;
     if (gameData._id) {
@@ -59,6 +58,8 @@ export async function POST(request) {
         .updateOne({ _id: new ObjectId(gameData._id) }, { $set: updateData });
     } else {
       // Add new game
+      gameData.createdAt = new Date();
+      gameData.updatedAt = new Date();
       result = await database.collection("games").insertOne(gameData);
     }
 
@@ -100,7 +101,7 @@ export async function DELETE(request) {
 
     const client = new MongoClient(uri);
     await client.connect();
-    const database = client.db("GameStore"); // Use your actual DB name
+    const database = client.db("gamestore");
 
     const result = await database.collection("games").deleteOne({
       _id: new ObjectId(gameId),
