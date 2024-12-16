@@ -75,38 +75,61 @@ const GameCRUDDashboard = () => {
       alert("Please fill in all required fields.");
       return;
     }
-
+  
     try {
-      const formData = new FormData();
-
-      // Append all game data
-      Object.keys(selectedGame).forEach((key) => {
-        if (key !== "image" || !imageFile) {
-          // Don't append image if we have a file
-          formData.append(key, selectedGame[key]);
-        }
-      });
-
-      // Append image file if exists
+      // Prepare the game data
+      const gameData = { ...selectedGame };
+  
+      // Handle image upload if a new file is selected
       if (imageFile) {
-        formData.append("image", imageFile);
+        // Convert image to base64
+        const reader = new FileReader();
+        reader.readAsDataURL(imageFile);
+        await new Promise((resolve) => {
+          reader.onloadend = () => {
+            gameData.image = reader.result;
+            resolve();
+          };
+        });
       }
-
-      const url = isAddMode ? "/api/games" : `/api/games/${selectedGame._id}`;
-      const method = isAddMode ? "POST" : "PUT";
-
+  
+      // Remove undefined or null values
+      Object.keys(gameData).forEach(
+        (key) => gameData[key] === null && delete gameData[key]
+      );
+  
+      const url = "/api/games";
+      const method = "POST";
+  
+      // Log the data being sent
+      console.log("Sending game data:", {
+        url,
+        method,
+        data: gameData
+      });
+  
       const response = await fetch(url, {
         method: method,
-        body: formData,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(gameData),
       });
-
+  
+      // Get the response body for more details
+      const responseBody = await response.text();
+      console.log("Response status:", response.status);
+      console.log("Response body:", responseBody);
+  
       if (!response.ok)
-        throw new Error(`Failed to ${isAddMode ? "add" : "update"} game`);
-
+        throw new Error(`Failed to ${isAddMode ? "add" : "update"} game: ${responseBody}`);
+  
       await fetchGames(); // Refresh the list
       setIsModalOpen(false);
       setImageFile(null);
     } catch (err) {
+      console.error("Save Error:", err);
+      alert(err.message); // Show error to the user
       setError(err.message);
     }
   };
