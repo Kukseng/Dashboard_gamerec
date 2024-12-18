@@ -1,82 +1,49 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Search, Filter, Star, Play } from "lucide-react";
 import { MdStar } from "react-icons/md";
 
+const PLACEHOLDER_IMAGE =
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg==";
+
 const GameStorePage = () => {
-  // Initial game list with more comprehensive details
-  const [games, setGames] = useState([
-    {
-      id: 1,
-      image:
-        "https://imageio.forbes.com/specials-images/imageserve/653d1491d815981e910e08d8/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds",
-      title: "The Finals",
-      description:
-        "In The Finals, teams of players must compete against each other as they participate in a fictional VR combat game show.",
-      category: "Action",
-      price: 29.99,
-      rating: 4.5,
-
-      time: "3h 1m 50s",
-      platform: ["PC", "Console"],
-    },
-    {
-      id: 2,
-      image:
-        "https://i0.wp.com/highschool.latimes.com/wp-content/uploads/2021/03/Valorant.png?fit=1200%2C675&ssl=1",
-      title: "Valorant",
-      description:
-        "Valorant is an online multiplayer computer game, produced by Riot Games. A first-person shooter game with tactical team-based gameplay.",
-      category: "Shooter",
-      price: 0, // Free to play
-      rating: 4.7,
-
-      time: "2h 45m 30s",
-      platform: ["PC"],
-    },
-    {
-      id: 3,
-      image:
-        "https://www.minecraft.net/content/dam/games/minecraft/key-art/MC-Vanilla_Media-Block-Image_PC-Bundle-Keyart_800x450.jpg",
-      title: "Minecraft",
-      description:
-        "Minecraft is a game where players place blocks and go on adventures. Build, explore, and survive in a blocky world of endless possibilities.",
-      category: "Sandbox",
-      price: 19.99,
-      rating: 4.9,
-
-      time: "5h 20m 10s",
-      platform: ["PC", "Mobile", "Console"],
-    },
-    {
-      id: 4,
-      image:
-        "https://www.minecraft.net/content/dam/games/minecraft/key-art/MC-Vanilla_Media-Block-Image_PC-Bundle-Keyart_800x450.jpg",
-      title: "Minecraft",
-      description:
-        "Minecraft is a game where players place blocks and go on adventures. Build, explore, and survive in a blocky world of endless possibilities.",
-      category: "Sandbox",
-      price: 19.99,
-      rating: 2,
-
-      time: "5h 20m 10s",
-      platform: ["PC", "Mobile", "Console"],
-    },
-  ]);
+  // State for games, loading, and error
+  const [games, setGames] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   // State for filters and search
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [ratingRange, setRatingRange] = useState([0, 5]);
 
+  // Fetch games from API
+  const fetchGames = async () => {
+    try {
+      const response = await fetch("/api/games");
+      if (!response.ok) throw new Error("Failed to fetch games");
+      const data = await response.json();
+      setGames(data);
+      setIsLoading(false);
+    } catch (err) {
+      setError(err.message);
+      setIsLoading(false);
+    }
+  };
+
+  // Fetch games on component mount
+  useEffect(() => {
+    fetchGames();
+  }, []);
+
   // Derived categories from games
   const categories = [...new Set(games.map((game) => game.category))];
 
   // Filtered games logic
   const filteredGames = games.filter((game) => {
-    const matchesSearch = game.title
+    const matchesSearch = game.name
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
     const matchesCategory =
@@ -86,6 +53,23 @@ const GameStorePage = () => {
 
     return matchesSearch && matchesCategory && matchesRating;
   });
+
+  // Loading and error states
+  if (isLoading) {
+    return (
+      <div className="bg-gray-100 min-h-screen flex items-center justify-center">
+        <div className="text-xl text-gray-600">Loading games...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="bg-gray-100 min-h-screen flex items-center justify-center">
+        <div className="text-red-500 text-xl">Error: {error}</div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-gray-100 min-h-screen p-8">
@@ -154,13 +138,13 @@ const GameStorePage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredGames.map((game) => (
               <div
-                key={game.id}
+                key={game._id}
                 className="bg-white rounded-lg overflow-hidden shadow-lg transform transition hover:scale-105"
               >
                 {/* Game Image */}
                 <Image
-                  src={game.image}
-                  alt={game.title}
+                  src={game.image || PLACEHOLDER_IMAGE}
+                  alt={game.name}
                   width={400}
                   height={250}
                   className="w-full h-48 object-cover"
@@ -169,34 +153,42 @@ const GameStorePage = () => {
                 {/* Game Details */}
                 <div className="p-5">
                   <div className="flex justify-between items-center mb-2">
-                    <h2 className="text-xl font-bold">{game.title}</h2>
+                    <h2 className="text-xl font-bold">{game.name}</h2>
                     <div className="flex items-center text-yellow-500">
                       <Star className="mr-1" size={20} />
-                      {game.rating}
+                      {game.rating || 'N/A'}
                     </div>
                   </div>
 
                   <p className="text-gray-600 mb-4 h-16 overflow-hidden">
-                    {game.description}
+                    {game.description || 'No description available'}
                   </p>
 
                   <div className="flex justify-between items-center mb-4">
                     <div className="text-green-600 font-bold">
-                      {game.price === 0 ? "Free" : `$${game.price.toFixed(2)}`}
+                      {game.price !== undefined 
+                        ? (game.price === 0 ? "Free" : `$${game.price.toFixed(2)}`) 
+                        : 'Price not set'}
                     </div>
                   </div>
 
                   {/* Platforms and Action Buttons */}
                   <div className="flex justify-between items-center">
                     <div className="flex space-x-2">
-                      {game.platform.map((platform) => (
-                        <span
-                          key={platform}
-                          className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs"
-                        >
-                          {platform}
+                      {game.platform ? (
+                        game.platform.map((platform) => (
+                          <span
+                            key={platform}
+                            className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs"
+                          >
+                            {platform}
+                          </span>
+                        ))
+                      ) : (
+                        <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs">
+                          Platforms N/A
                         </span>
-                      ))}
+                      )}
                     </div>
                     <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 flex items-center">
                       <Play className="mr-2" size={16} /> Play
