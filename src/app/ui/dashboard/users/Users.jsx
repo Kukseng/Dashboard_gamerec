@@ -155,37 +155,29 @@ const Users = () => {
 
   // User Edit Form Component
   const UserEditForm = ({ user, onSave, onCancel }) => {
-    const [formData, setFormData] = useState(
-      user || {
-        name: "",
-        email: "",
-        title: "",
-        status: "Active",
-        role: "",
-        image: "",
-      }
-    );
-
+    const [formData, setFormData] = useState({
+      name: user?.name || "",
+      email: user?.email || "",
+      title: user?.title || "",
+      status: user?.status || "Active",
+      role: user?.role || "",
+      image: user?.image || ""
+    });
+  
     const handleChange = (e) => {
       const { name, value } = e.target;
-      setFormData((prev) => ({ ...prev, [name]: value }));
+      setFormData(prev => ({ ...prev, [name]: value }));
     };
-
+  
     const handleSubmit = (e) => {
       e.preventDefault();
       onSave(formData);
-      
     };
-
+  
     return (
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-      >
+      <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Name
-          </label>
+          <label className="block text-gray-700 text-sm font-bold mb-2">Name</label>
           <input
             type="text"
             name="name"
@@ -196,9 +188,7 @@ const Users = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Email
-          </label>
+          <label className="block text-gray-700 text-sm font-bold mb-2">Email</label>
           <input
             type="email"
             name="email"
@@ -209,9 +199,7 @@ const Users = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Title
-          </label>
+          <label className="block text-gray-700 text-sm font-bold mb-2">Title</label>
           <input
             type="text"
             name="title"
@@ -221,9 +209,7 @@ const Users = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Status
-          </label>
+          <label className="block text-gray-700 text-sm font-bold mb-2">Status</label>
           <select
             name="status"
             value={formData.status}
@@ -235,9 +221,7 @@ const Users = () => {
           </select>
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Role
-          </label>
+          <label className="block text-gray-700 text-sm font-bold mb-2">Role</label>
           <input
             type="text"
             name="role"

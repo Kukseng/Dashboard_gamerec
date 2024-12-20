@@ -8,9 +8,13 @@ const Dashboard = () => {
       {/* Grid Layout */}
       <div className="flex">
         {/* Left Section */}
-        <div className="max-w-[880px] flex-1">
-          <Card />
-        </div>
+       
+        <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
+      <div className="max-w-[880px] flex-1 bg-white p-6 shadow-lg rounded-lg">
+        {/* TableUser component */}
+        <Card />
+      </div>
+    </div>
         {/* Right Section */}
         <div className="">
           <Rightbar />
