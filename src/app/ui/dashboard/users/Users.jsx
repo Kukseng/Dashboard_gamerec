@@ -2,10 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import PropTypes from "prop-types";
-import Noavatar from "../../../../../public/noavatar.png";
+import { UserPlus, Pencil, Trash2 } from "lucide-react";
 
-// Reusable UserRow Component
 const UserRow = ({
   _id,
   name,
@@ -17,31 +15,30 @@ const UserRow = ({
   onEdit,
   onDelete,
 }) => (
-  <tr>
+  <tr className="hover:bg-gray-50">
     <td className="px-6 py-4 whitespace-nowrap">
-      <div className="flex items-center">
-        <div className="flex-shrink-0 h-10 w-10">
-          <Image
-            className="h-10 w-10 rounded-full"
-            src={image || Noavatar}
-            alt="User Profile"
+      <div className="flex items-center gap-4">
+        <div className="h-10 w-10 flex-shrink-0 overflow-hidden rounded-full bg-gray-100">
+        <Image
+            className="h-full w-full object-cover"
+            src={image || "/noavatar.png"}
+            alt={`Profile picture of ${name}`}
             width={40}
             height={40}
           />
         </div>
-        <div className="ml-4">
-          <div className="text-sm font-medium text-gray-900">{name}</div>
+        <div>
+          <div className="font-medium text-gray-900">{name}</div>
           <div className="text-sm text-gray-500">{email}</div>
         </div>
       </div>
     </td>
     <td className="px-6 py-4 whitespace-nowrap">
       <div className="text-sm text-gray-900">{title}</div>
-      <div className="text-sm text-gray-500">Optimization</div>
     </td>
     <td className="px-6 py-4 whitespace-nowrap">
       <span
-        className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+        className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
           status === "Active"
             ? "bg-green-100 text-green-800"
             : "bg-red-100 text-red-800"
@@ -53,246 +50,208 @@ const UserRow = ({
     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
       {role}
     </td>
-    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-      {email}
-    </td>
-    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-      <button
-        onClick={() => onEdit(_id)}
-        className="text-indigo-600 hover:text-indigo-900 mr-2"
-      >
-        Edit
-      </button>
-      <button
-        onClick={() => onDelete(_id)}
-        className="text-red-600 hover:text-red-900"
-      >
-        Delete
-      </button>
+    <td className="px-6 py-4 whitespace-nowrap">
+      <div className="flex gap-2">
+        <button
+          onClick={() => onEdit(_id)}
+          className="inline-flex items-center p-1 text-gray-600 hover:text-blue-600"
+        >
+          <Pencil className="h-4 w-4" />
+        </button>
+        <button
+          onClick={() => onDelete(_id)}
+          className="inline-flex items-center p-1 text-gray-600 hover:text-red-600"
+        >
+          <Trash2 className="h-4 w-4" />
+        </button>
+      </div>
     </td>
   </tr>
 );
 
-// PropTypes for UserRow
-UserRow.propTypes = {
-  _id: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  image: PropTypes.string,
-  title: PropTypes.string.isRequired,
-  status: PropTypes.string.isRequired,
-  role: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
-  onEdit: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired,
+const UserForm = ({ user, onSave, onCancel }) => {
+  const [formData, setFormData] = useState({
+    name: user?.name || "",
+    email: user?.email || "",
+    title: user?.title || "",
+    status: user?.status || "Active",
+    role: user?.role || "",
+    image: user?.image || ""
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSave(formData);
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-4 p-6">
+      <div className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Name</label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Email</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Title</label>
+          <input
+            type="text"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Status</label>
+          <select
+            name="status"
+            value={formData.status}
+            onChange={handleChange}
+            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+          >
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+          </select>
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Role</label>
+          <input
+            type="text"
+            name="role"
+            value={formData.role}
+            onChange={handleChange}
+            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+          />
+        </div>
+      </div>
+      <div className="flex justify-end gap-2 pt-4">
+        <button
+          type="button"
+          onClick={onCancel}
+          className="rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+        >
+          Save User
+        </button>
+      </div>
+    </form>
+  );
 };
 
-// Main Users Component
 const Users = () => {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [editingUser, setEditingUser] = useState(null);
+  const [showForm, setShowForm] = useState(false);
 
-  // Fetch Users
   const fetchUsers = async () => {
     try {
       const response = await fetch("/api/users");
-      if (!response.ok) {
-        throw new Error("Failed to fetch users");
-      }
+      if (!response.ok) throw new Error("Failed to fetch users");
       const data = await response.json();
       setUsers(data);
-      setIsLoading(false);
     } catch (err) {
       setError(err.message);
+    } finally {
       setIsLoading(false);
     }
   };
 
-  // Add/Update User
   const saveUser = async (userData) => {
     try {
       const response = await fetch("/api/users", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userData),
       });
-
-      if (!response.ok) {
-        throw new Error("Failed to save user");
-      }
-
-      await fetchUsers(); // Refresh user list
+      if (!response.ok) throw new Error("Failed to save user");
+      await fetchUsers();
+      setShowForm(false);
       setEditingUser(null);
     } catch (err) {
       setError(err.message);
     }
   };
 
-  // Delete User
   const deleteUser = async (userId) => {
     try {
       const response = await fetch(`/api/users?id=${userId}`, {
         method: "DELETE",
       });
-
-      if (!response.ok) {
-        throw new Error("Failed to delete user");
-      }
-
-      await fetchUsers(); // Refresh user list
+      if (!response.ok) throw new Error("Failed to delete user");
+      await fetchUsers();
     } catch (err) {
       setError(err.message);
     }
   };
 
-  // Initial fetch
   useEffect(() => {
     fetchUsers();
   }, []);
 
-  // User Edit Form Component
-  const UserEditForm = ({ user, onSave, onCancel }) => {
-    const [formData, setFormData] = useState({
-      name: user?.name || "",
-      email: user?.email || "",
-      title: user?.title || "",
-      status: user?.status || "Active",
-      role: user?.role || "",
-      image: user?.image || ""
-    });
-  
-    const handleChange = (e) => {
-      const { name, value } = e.target;
-      setFormData(prev => ({ ...prev, [name]: value }));
-    };
-  
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      onSave(formData);
-    };
-  
-    return (
-      <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">Name</label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">Email</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">Title</label>
-          <input
-            type="text"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">Status</label>
-          <select
-            name="status"
-            value={formData.status}
-            onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
-          >
-            <option value="Active">Active</option>
-            <option value="Inactive">Inactive</option>
-          </select>
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">Role</label>
-          <input
-            type="text"
-            name="role"
-            value={formData.role}
-            onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
-          />
-        </div>
-        <div className="flex items-center justify-between">
-          <button
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          >
-            Save
-          </button>
-          <button
-            type="button"
-            onClick={onCancel}
-            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-          >
-            Cancel
-          </button>
-        </div>
-      </form>
-    );
-  };
-
-  // PropTypes for UserEditForm
-  UserEditForm.propTypes = {
-    user: PropTypes.shape({
-      _id: PropTypes.string,
-      name: PropTypes.string,
-      email: PropTypes.string,
-      title: PropTypes.string,
-      status: PropTypes.string,
-      role: PropTypes.string,
-      image: PropTypes.string,
-    }),
-    onSave: PropTypes.func.isRequired,
-    onCancel: PropTypes.func.isRequired,
-  };
-
   if (isLoading) {
-    return <div className="text-center py-4">Loading...</div>;
+    return (
+      <div className="flex h-[400px] items-center justify-center">
+        <div className="text-lg text-gray-500">Loading...</div>
+      </div>
+    );
   }
 
   if (error) {
-    return <div className="text-red-500 text-center py-4">{error}</div>;
+    return (
+      <div className="flex h-[400px] items-center justify-center">
+        <div className="text-lg text-red-500">{error}</div>
+      </div>
+    );
   }
 
   return (
-    <div>
-      {editingUser !== null && (
-        <UserEditForm
-          user={editingUser}
-          onSave={saveUser}
-          onCancel={() => setEditingUser(null)}
-        />
-      )}
-      <div className="overflow-x-auto">
+    <div className="rounded-lg border border-gray-200 bg-white shadow">
+      <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
+        <h2 className="text-xl font-semibold text-gray-800">User Management</h2>
         <button
-          onClick={() => setEditingUser({})}
-          className="mb-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+          onClick={() => { setEditingUser({}); setShowForm(true); }}
+          className="inline-flex items-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
         >
-          Add New User
+          <UserPlus className="mr-2 h-4 w-4" />
+          Add User
         </button>
+      </div>
+      <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Name
+                User
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Title
@@ -304,9 +263,6 @@ const Users = () => {
                 Role
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Email
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Actions
               </th>
             </tr>
@@ -314,7 +270,7 @@ const Users = () => {
           <tbody className="bg-white divide-y divide-gray-200">
             {users.length === 0 ? (
               <tr>
-                <td colSpan={6} className="text-center py-4">
+                <td colSpan={5} className="px-6 py-4 text-center text-gray-500">
                   No users found.
                 </td>
               </tr>
@@ -323,7 +279,7 @@ const Users = () => {
                 <UserRow
                   key={user._id}
                   {...user}
-                  onEdit={() => setEditingUser(user)}
+                  onEdit={() => { setEditingUser(user); setShowForm(true); }}
                   onDelete={() => deleteUser(user._id)}
                 />
               ))
@@ -331,8 +287,28 @@ const Users = () => {
           </tbody>
         </table>
       </div>
+
+      {showForm && (
+        <div className="fixed inset-0 z-50 overflow-y-auto bg-gray-500 bg-opacity-75">
+          <div className="flex min-h-full items-center justify-center p-4">
+            <div className="w-full max-w-md rounded-lg bg-white shadow-xl">
+              <div className="border-b border-gray-200 px-6 py-4">
+                <h3 className="text-lg font-medium text-gray-900">
+                  {editingUser?._id ? "Edit User" : "Add New User"}
+                </h3>
+              </div>
+              <UserForm
+                user={editingUser}
+                onSave={saveUser}
+                onCancel={() => setShowForm(false)}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
 export default Users;
+
